@@ -1,0 +1,46 @@
+<!-- Layout for the list of plants -->
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CatalogActivity">
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- Empty view for the list -->
+    <RelativeLayout
+        android:id="@+id/empty_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+
+        <ImageView
+            android:id="@+id/empty_shop_image"
+            android:src="@drawable/ic_empty_shop"
+            tools:ignore="ContentDescription"
+            style="@style/catalog_image_view_empty_shop" />
+
+        <TextView
+            android:id="@+id/empty_title_text"
+            android:text="@string/empty_view_title_text"
+            tools:targetApi="jelly_bean"
+            style="@style/catalog_text_view_empty_shop_first_string" />
+
+        <TextView
+            android:id="@+id/empty_subtitle_text"
+            android:text="@string/empty_view_subtitle_text"
+            tools:targetApi="jelly_bean"
+            style="@style/catalog_text_view_empty_shop_second_string" />
+    </RelativeLayout>
+
+    <!-- FAB Button to add plants to the db -->
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:src="@drawable/ic_fab_add_button"
+        tools:ignore="RtlHardcoded"
+        style="@style/catalog_fab_button" />
+</RelativeLayout>

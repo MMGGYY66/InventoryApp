@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?><!-- Layout for a single list item in the list of plants -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="90dp"
+    android:background="#F9FBE7"
+    android:orientation="horizontal"
+    android:padding="8dp"
+    android:descendantFocusability="blocksDescendants" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical"
+        android:paddingLeft="8dp"
+        tools:ignore="RtlHardcoded,RtlSymmetry">
+
+        <TextView
+            android:id="@+id/plant_name"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif"
+            android:gravity="bottom"
+            android:textColor="#1B5E20"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:text="Phalaenopsis Orchid"
+            tools:ignore="UnusedAttribute" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="top"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:textColor="#546E7A"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:text="@string/text_view_placeholder_plant_price"
+                tools:ignore="UnusedAttribute" />
+
+            <TextView
+                android:id="@+id/plant_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:textColor="#546E7A"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                tools:text="999,99"
+                tools:ignore="UnusedAttribute" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:textColor="#546E7A"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:text="@string/text_view_placeholder_plant_quantity"
+                tools:ignore="UnusedAttribute" />
+
+            <TextView
+                android:id="@+id/plant_quantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:textColor="#546E7A"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                tools:text="1000"
+                tools:ignore="UnusedAttribute" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/list_view_decrement_plant_quantity"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:background="@null"
+        android:src="@drawable/ic_image_button_sale"
+        tools:ignore="ContentDescription,RtlHardcoded" />
+</RelativeLayout>

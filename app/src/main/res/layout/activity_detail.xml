@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?><!-- Layout for the editor -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="8dp"
+    tools:context=".EditorActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Plant image placeholder -->
+        <ImageView
+            android:id="@+id/detail_plant_image_view"
+            tools:src="@drawable/ic_plant_image_placeholder"
+            tools:ignore="ContentDescription"
+            style="@style/detail_image_view_plant_image" />
+
+        <!-- Plant name category -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="@dimen/activity_margin"
+            android:orientation="horizontal">
+
+            <!-- Label -->
+            <TextView
+                android:text="@string/detail_text_view_plant_name_category"
+                tools:ignore="UnusedAttribute"
+                style="@style/detail_text_view_category_label" />
+
+            <!-- Plant name field -->
+            <TextView
+                android:id="@+id/detail_plant_name"
+                tools:text="@string/detail_text_view_dummy_plant_name"
+                style="@style/detail_text_view_plant_name" />
+
+        </LinearLayout>
+
+
+        <!-- Plant stock quantity category -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <!-- Label -->
+            <TextView
+                android:text="@string/detail_text_view_plant_quantity_category"
+                style="@style/detail_text_view_category_label"
+                tools:ignore="UnusedAttribute" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="2">
+
+                <!-- Unit for stock (pieces) -->
+            <TextView
+                android:text="@string/detail_plant_quantity_unit"
+                style="@style/detail_text_view_stock_unit" />
+
+            <ImageButton
+                android:id="@+id/detail_button_stock_decrement"
+                android:src="@drawable/ic_decrement"
+                tools:ignore="ContentDescription"
+                style="@style/detail_image_button_change_plant_quantity" />
+
+            <!-- Plant stock quantity field -->
+            <TextView
+                android:id="@+id/detail_plant_stock_quantity"
+                tools:text="@string/detail_text_view_dummy_plant_quantity"
+                style="@style/detail_text_view_plant_stock_quantity" />
+
+            <ImageButton
+                android:id="@+id/detail_button_stock_increment"
+                style="@style/detail_image_button_change_plant_quantity"
+                android:src="@drawable/ic_increment"
+                tools:ignore="ContentDescription" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <!-- Plant price category -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <!-- Label -->
+            <TextView
+                android:text="@string/detail_text_view_plant_price_category"
+                style="@style/detail_text_view_category_label"
+                tools:ignore="UnusedAttribute" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="2">
+
+                <!-- Unit for price (currency) -->
+                <TextView
+                    android:text="@string/US_currency_code"
+                    style="@style/detail_text_view_price_unit" />
+
+
+            <!-- Plant price field -->
+            <TextView
+                android:id="@+id/detail_plant_price"
+                tools:text="@string/detail_text_view_dummy_plant_price"
+                style="@style/detail_text_view_plant_price" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Supplier name category -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="@dimen/activity_padding"
+            android:orientation="horizontal">
+
+            <!-- Label -->
+            <TextView
+                android:text="@string/detail_text_view_supplier_name_category"
+                style="@style/detail_text_view_category_label"
+                tools:ignore="UnusedAttribute" />
+
+            <!-- Supplier name field -->
+            <TextView
+                android:id="@+id/detail_supplier_name"
+                tools:text="@string/detail_text_view_dummy_supplier_name"
+                style="@style/detail_text_view_supplier_name" />
+
+        </LinearLayout>
+
+        <!-- Supplier email category -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_padding"
+            android:orientation="horizontal">
+
+            <!-- Label -->
+            <TextView
+                android:text="@string/detail_text_view_supplier_email_category"
+                style="@style/detail_text_view_category_label"
+                tools:ignore="UnusedAttribute" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="2">
+
+                <!-- Button to send email to supplier -->
+                <ImageButton
+                    android:id="@+id/detail_button_supplier_email"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@color/colorPrimary"
+                    android:src="@drawable/ic_email"
+                    tools:ignore="ContentDescription" />
+
+            <!-- Supplier email field -->
+            <TextView
+                android:id="@+id/detail_supplier_email"
+                tools:text="@string/detail_text_view_dummy_supplier_email"
+                style="@style/detail_text_view_supplier_email" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Supplier phone category -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="@dimen/activity_padding"
+            android:orientation="horizontal">
+
+            <!-- Label -->
+            <TextView
+                android:text="@string/detail_text_view_supplier_phone_category"
+                style="@style/detail_text_view_category_label"
+                tools:ignore="UnusedAttribute" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="2">
+
+                <!-- Button to call the supplier -->
+                <ImageButton
+                    android:id="@+id/detail_button_supplier_phone"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@color/colorPrimary"
+                    android:src="@drawable/ic_phone"
+                    tools:ignore="ContentDescription" />
+
+            <!-- supplier name field -->
+            <TextView
+                android:id="@+id/detail_supplier_phone"
+                tools:text="@string/detail_text_view_dummy_supplier_phone"
+                style="@style/detail_text_view_supplier_phone" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

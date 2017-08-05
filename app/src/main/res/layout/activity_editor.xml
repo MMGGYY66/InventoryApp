@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?><!-- Layout for the editor -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/activity_padding"
+    tools:context=".EditorActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/edit_plant_image_view"
+            android:src="@drawable/ic_plant_image_placeholder"
+            tools:ignore="ContentDescription"
+            style="@style/edit_image_view_plant_image" />
+
+        <Button
+            android:id="@+id/edit_add_plant_image_button"
+            tools:text="@string/edit_text_view_add_plant_image"
+            tools:ignore="UnusedAttribute"
+            style="@style/edit_button_add_plant_image" />
+
+
+        <TextView
+            android:text="@string/edit_text_view_mandatory_fields"
+            style="@style/edit_text_view_mandatory_fields" />
+
+        <!-- Plant name category -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="@dimen/activity_padding"
+            android:orientation="horizontal">
+
+            <!-- Label -->
+            <TextView
+                android:text="@string/detail_text_view_plant_name_category"
+                tools:ignore="UnusedAttribute"
+                style="@style/edit_text_view_category_label" />
+
+            <!-- Plant name field -->
+            <EditText
+                android:id="@+id/edit_plant_name"
+                android:hint="@string/edit_text_hint_plant_name"
+                style="@style/edit_text_plant_name" />
+
+        </LinearLayout>
+
+
+        <!-- Plant stock quantity category -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="@dimen/activity_padding"
+            android:orientation="horizontal">
+
+            <!-- Label -->
+            <TextView
+                android:text="@string/detail_text_view_plant_quantity_category"
+                style="@style/edit_text_view_category_label"
+                tools:ignore="UnusedAttribute" />
+
+            <!-- Plant stock quantity field -->
+            <EditText
+                android:id="@+id/edit_plant_stock_quantity"
+                android:hint="@string/edit_text_hint_plant_quantity"
+                style="@style/edit_text_plant_stock_quantity" />
+
+        </LinearLayout>
+
+        <!-- Plant price category -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="@dimen/activity_padding"
+            android:orientation="horizontal">
+
+            <!-- Label -->
+            <TextView
+                android:text="@string/detail_text_view_plant_price_category"
+                style="@style/edit_text_view_category_label"
+                tools:ignore="UnusedAttribute" />
+
+            <!-- Plant price field -->
+            <EditText
+                android:id="@+id/edit_plant_price"
+                android:hint="@string/edit_text_hint_plant_price"
+                style="@style/edit_text_plant_price" />
+
+        </LinearLayout>
+
+        <!-- Supplier name category -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="@dimen/activity_padding"
+            android:orientation="horizontal">
+
+            <!-- Label -->
+            <TextView
+                android:text="@string/detail_text_view_supplier_name_category"
+                style="@style/edit_text_view_category_label"
+                tools:ignore="UnusedAttribute" />
+
+            <!-- Supplier name field -->
+            <EditText
+                android:id="@+id/edit_supplier_name"
+                android:hint="@string/edit_text_hint_supplier_name"
+                style="@style/edit_text_supplier_name" />
+
+        </LinearLayout>
+
+        <!-- Supplier email category -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="@dimen/activity_padding"
+            android:orientation="horizontal">
+
+            <!-- Label -->
+            <TextView
+                android:text="@string/detail_text_view_supplier_email_category"
+                style="@style/edit_text_view_category_label"
+                tools:ignore="UnusedAttribute" />
+
+            <!-- Supplier email field -->
+            <EditText
+                android:id="@+id/edit_supplier_email"
+                android:hint="@string/edit_text_hint_supplier_email"
+                style="@style/edit_text_supplier_email" />
+
+        </LinearLayout>
+
+        <!-- Supplier phone category -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="@dimen/activity_padding"
+            android:orientation="horizontal">
+
+            <!-- Label -->
+            <TextView
+                android:text="@string/detail_text_view_supplier_phone_category"
+                style="@style/edit_text_view_category_label"
+                tools:ignore="UnusedAttribute" />
+
+            <!-- supplier name field -->
+            <EditText
+                android:id="@+id/edit_supplier_phone"
+                android:hint="@string/edit_text_hint_supplier_phone"
+                style="@style/edit_text_supplier_phone" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

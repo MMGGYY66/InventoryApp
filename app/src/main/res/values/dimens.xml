@@ -1,0 +1,7 @@
+<resources>
+    <!-- Common margin value used throughout the app -->
+    <dimen name="activity_margin">16dp</dimen>
+
+    <!-- Common padding value used throughout the app -->
+    <dimen name="activity_padding">8dp</dimen>
+</resources>

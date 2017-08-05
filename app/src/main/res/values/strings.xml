@@ -1,0 +1,141 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">LIF</string>
+
+    <!-- Subtitle text for the empty view that prompts the user to add a plant [CHAR LIMIT=50] -->
+    <string name="empty_view_subtitle_text">Get started by adding a new\n plant using the button below</string>
+
+    <!-- Title text for the empty view to describe the empty flower shop [CHAR LIMIT=50] -->
+    <string name="empty_view_title_text" tools:ignore="TypographyEllipsis">Your flower shop is empty!</string>
+
+    <!-- Strings for DetailActivity Views [CHAR LIMIT=50] -->
+    <string name="detail_button_edit_photo">Edit Photo</string>
+    <string name="detail_text_view_plant_name_category">Name</string>
+    <string name="detail_text_view_plant_quantity_category">Stock</string>
+    <string name="detail_plant_quantity_unit">pcs</string>
+    <string name="detail_text_view_plant_price_category">Price</string>
+    <string name="detail_text_view_supplier_name_category">Supplier name</string>
+    <string name="detail_text_view_supplier_email_category">Supplier email</string>
+    <string name="detail_text_view_supplier_phone_category">Supplier phone</string>
+    <string name="detail_text_view_dummy_plant_name">Phalaenopsis Orchid with Red flower Spikes</string>
+    <string name="detail_text_view_dummy_plant_quantity">9999</string>
+    <string name="detail_text_view_dummy_plant_price">9999,99</string>
+    <string name="detail_text_view_dummy_supplier_name">Interflora Limited USA</string>
+    <string name="detail_text_view_dummy_supplier_email">orders@interflora.com</string>
+    <string name="detail_text_view_dummy_supplier_phone">+39 06 11 22 333</string>
+
+    <!-- Strings for EditorActivity Views [CHAR LIMIT=50] -->
+    <string name="edit_text_view_mandatory_fields">All the fields are mandatory! Please insert all the required data for the plant before saving.</string>
+    <string name="edit_text_view_add_plant_image">ADD A PHOTO</string>
+    <string name="edit_text_view_edit_plant_image">EDIT PHOTO</string>
+    <string name="edit_text_hint_plant_name">Insert plant name</string>
+    <string name="edit_text_hint_plant_quantity">Insert quantity (max 9999 pcs)</string>
+    <string name="edit_text_hint_plant_price">Insert price (max $ 9999.99)</string>
+    <string name="edit_text_hint_supplier_name">Insert supplier name</string>
+    <string name="edit_text_hint_supplier_email">Insert supplier email</string>
+    <string name="edit_text_hint_supplier_phone">Insert supplier phone</string>
+
+
+    <!-- Strings for MenuItems [CHAR LIMIT=50] -->
+    <!-- Label for catalog activity overflow menu option that inserts fake plant data into the app [CHAR LIMIT=20] -->
+    <string name="action_insert_dummy_data">Insert Dummy Data</string>
+
+    <!-- Label for catalog activity overflow menu option that deletes all plants data in the app [CHAR LIMIT=20] -->
+    <string name="action_delete_all_entries">Delete All Plants</string>
+
+    <!-- Label for editor activity menu option to save a new plant and leave editor [CHAR LIMIT=20] -->
+    <string name="action_save">Save</string>
+
+    <!-- Label for detail activity/editor activity overflow menu option that deletes the current plant [CHAR LIMIT=20] -->
+    <string name="action_delete">Delete</string>
+
+    <!-- Label for detail activity overflow menu option that edit the current plant [CHAR LIMIT=20] -->
+    <string name="action_edit">Edit Plant</string>
+
+
+    <!-- Strings for Toast Messages [CHAR LIMIT=50] -->
+    <!-- Text for Toast message to advice user plant is out of stock, and quantity can't be decremented using
+     decrement button in the ListView [CHAR LIMIT=20] -->
+    <string name="error_button_decrement_plant_quantity">This plant is out of stock!\nPlease, place an order to the supplier.</string>
+
+    <!-- Text for Toast message to advice user plant's stock has reached its max capacity (9999 pieces), and quantity can't be
+     incremented anymore [CHAR LIMIT=20] -->
+    <string name="error_button_increment_plant_quantity">Plant\'s stock quantity has reached its limit!\nSell any plants before placing other orders.</string>
+
+    <string name="detail_activity_title">Plant Details</string>
+
+    <!-- Toast message in editor when current plant was successfully deleted [CHAR LIMIT=NONE] -->
+    <string name="editor_delete_plant_successful">Plant deleted</string>
+
+    <!-- Toast message in editor when current plant has failed to be deleted [CHAR LIMIT=NONE] -->
+    <string name="editor_delete_plant_failed">Error with deleting plant</string>
+
+    <!-- Toast message in editor when new plant has been successfully inserted [CHAR LIMIT=NONE] -->
+    <string name="editor_insert_plant_successful">Plant saved</string>
+
+    <!-- Toast message in editor when new plant has failed to be inserted [CHAR LIMIT=NONE] -->
+    <string name="editor_insert_plant_failed">Error with saving plant</string>
+
+    <!-- Toast message in editor when there are empty fields when trying to save [CHAR LIMIT=NONE] -->
+    <string name="editor_error_fields_incomplete">Please insert all the plant\'s data before saving!</string>
+
+    <!-- Toast message in editor when there are invalid characters in the quantity field when trying to save [CHAR LIMIT=NONE] -->
+    <string name="editor_error_quantity_field">Please insert a valid numeric quantity!</string>
+
+    <!-- Toast message in editor when there are invalid characters in the price field when trying to save [CHAR LIMIT=NONE] -->
+    <string name="editor_error_price_field">Please insert a valid numeric price!</string>
+
+    <!-- Toast message in editor when user hasn't chosen an image for the plant before saving [CHAR LIMIT=NONE] -->
+    <string name="editor_error_empty_image_field">Please choose an image for the plant before saving!</string>
+
+    <!-- Toast message in editor when current plant was successfully updated [CHAR LIMIT=NONE] -->
+    <string name="editor_update_plant_successful">Plant updated</string>
+
+    <!-- Toast message in editor when current plant has failed to be updated [CHAR LIMIT=NONE] -->
+    <string name="editor_update_plant_failed">Error with updating plant</string>
+
+    <!-- Activities' Labels -->
+    <string name="editor_activity_title_new_plant">Add new Plant</string>
+    <string name="editor_activity_title_edit_plant">Edit Plant</string>
+
+    <!-- Strings for ListView -->
+    <string name="text_view_placeholder_plant_price">price: \u0024 &#160;</string>
+    <string name="text_view_placeholder_plant_quantity">&#160;| stock: pcs&#160;</string>
+    <string name="US_currency_code">\u0024</string>
+
+    <!-- Action Strings -->
+    <string name="action_yes">YES</string>
+    <string name="action_no">NO</string>
+    <string name="action_select_picture">Select Picture</string>
+
+
+    <!-- Strings for Dialog Messages [CHAR LIMIT=50] -->
+    <!-- Dialog message to ask the user to confirm deleting the current plant [CHAR LIMIT=NONE] -->
+    <string name="delete_dialog_msg">Delete this plant?</string>
+
+    <!-- Dialog message to ask the user to confirm deleting all the plants in the db [CHAR LIMIT=NONE] -->
+    <string name="delete_all_plants_dialog_msg">Delete all the plants in the database? Deleted data are unrecoverable.</string>
+
+    <!-- Dialog button text for the option to confirm deleting the current plant [CHAR LIMIT=20] -->
+    <string name="delete">Delete</string>
+
+    <!-- Dialog button text for the option to cancel deletion of the current plant [CHAR LIMIT=20] -->
+    <string name="cancel">Cancel</string>
+
+    <!-- Dialog message when user is leaving editor but hasn't saved changes [CHAR LIMIT=NONE] -->
+    <string name="unsaved_changes_dialog_msg">Discard your changes and quit editing?</string>
+
+    <!-- Dialog button text for the option to discard a user's changes [CHAR LIMIT=20] -->
+    <string name="discard">Discard</string>
+
+    <!-- Dialog button text for the option to keep editing the current plant [CHAR LIMIT=20] -->
+    <string name="keep_editing">Keep Editing</string>
+
+
+    <!-- String for emailIntent -->
+    <string name="order_email_subject">New stock order for %s</string>
+    <string name="order_email_object">Dear %1$s,\nOn behalf of Flower Shop, I would like to place an order for the following products from your company: no. &#160;pieces of %2$s.
+        The terms and conditions will be the same as per our previous orders; that is, cash on delivery. Please note the special condition with this batch of order;
+        that is, the products on the order list must be delivered within a month from the date of this order letter. Thank you for your kind understanding and prompt
+        service. Please feel free to contact me for further clarifications on this purchase order.\n\nYours Sincerely,\n\nFlower Shop Staff</string>
+    <string name="label_intent_order_by_email">Send order by email</string>
+</resources>

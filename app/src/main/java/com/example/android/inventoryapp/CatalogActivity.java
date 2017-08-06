@@ -44,12 +44,6 @@ public class CatalogActivity extends AppCompatActivity
      */
     String mSearchQuery = null;
 
-    // Defines a string to contain the selection clause
-    String mSelectionClause = null;
-
-    // Initializes an array to contain selection arguments
-    String[] mSelectionArgs = {""};
-
 
     /**
      * Tag for the log messages
@@ -187,20 +181,15 @@ public class CatalogActivity extends AppCompatActivity
 
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle args) {
+        String mSelectionArgs;
 
-        // If the search query is an empty string, gets everything from the db
-        if (TextUtils.isEmpty(mSearchQuery)) {
-            // Setting the selection clause to null will return all the values from the table
-            mSelectionClause = null;
-            mSelectionArgs[0] = "";
-
+        // If the search query is not an empty string, query the db with the given mSearchQuery
+        if (mSearchQuery != null && TextUtils.isEmpty(mSearchQuery)) {
+            mSelectionArgs = PlantEntry.COLUMN_PLANT_NAME + " LIKE '%" + mSearchQuery + "%'";
+            Log.e(LOG_TAG, mSelectionArgs);
         } else {
-            // Constructs a selection clause that matches the word that the user entered.
-            mSelectionClause = PlantEntry.COLUMN_PLANT_NAME + " = ?";
-
-            // Moves the user's input string to the selection arguments.
-            mSelectionArgs[0] = mSearchQuery;
-
+            // If the search query is an empty string, gets everything from the db
+            mSelectionArgs = null;
         }
 
             // Define a projection that specifies the columns from the table we care about
@@ -215,8 +204,8 @@ public class CatalogActivity extends AppCompatActivity
             return new CursorLoader(this,    // Parent activity context
                     PlantEntry.CONTENT_URI,  // Parent content URI to query
                     projection,              // The columns to return for each row
-                    mSelectionClause,        // Selection criteria
-                    mSelectionArgs,          // Selection criteria
+                    mSelectionArgs,          // Either null, or the search query the user entered
+                    null,                    // Selection criteria
                     null);                   // Default sort order
     }
     
@@ -242,6 +231,7 @@ public class CatalogActivity extends AppCompatActivity
         mSearchQuery = searchView.getQuery().toString().trim();
 
         getLoaderManager().restartLoader(PLANT_LOADER, null, this);
+        Log.e(LOG_TAG, "LOADER RESTARTED");
 
         // After you run your desired action:
         // clear search bar

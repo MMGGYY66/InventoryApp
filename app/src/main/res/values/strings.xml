@@ -138,4 +138,5 @@
         that is, the products on the order list must be delivered within a month from the date of this order letter. Thank you for your kind understanding and prompt
         service. Please feel free to contact me for further clarifications on this purchase order.\n\nYours Sincerely,\n\nFlower Shop Staff</string>
     <string name="label_intent_order_by_email">Send order by email</string>
+    <string name="search_view_title">Search</string>
 </resources>

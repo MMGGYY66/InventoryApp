@@ -12,12 +12,15 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.android.inventoryapp.data.PlantContract.PlantEntry;
 
@@ -26,7 +29,27 @@ import com.example.android.inventoryapp.data.PlantContract.PlantEntry;
  * Displays list of plants that were entered and stored in the app.
  */
 
-public class CatalogActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
+public class CatalogActivity extends AppCompatActivity
+        implements LoaderManager.LoaderCallbacks<Cursor>, SearchView.OnQueryTextListener {
+
+    /**
+     * UI elements related with the SearchView
+     * on the AppBar
+     */
+    MenuItem searchMenuItem;
+    SearchView searchView;
+
+    /**
+     * Query inserted by the user through the AppBar SearchView
+     */
+    String mSearchQuery = null;
+
+    // Defines a string to contain the selection clause
+    String mSelectionClause = null;
+
+    // Initializes an array to contain selection arguments
+    String[] mSelectionArgs = {""};
+
 
     /**
      * Tag for the log messages
@@ -111,6 +134,13 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
         // Inflate the menu options from the res/menu/menu_catalog.xml file.
         // This adds menu items to the app bar.
         getMenuInflater().inflate(R.menu.menu_catalog, menu);
+
+        searchMenuItem = menu.findItem(R.id.action_search);
+        searchView = (SearchView) searchMenuItem.getActionView();
+
+        // Setting the listener on the SearchView
+        searchView.setOnQueryTextListener(this);
+
         return true;
     }
 
@@ -157,21 +187,37 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
 
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle args) {
-        // Define a projection that specifies the columns from the table we care about
-        String[] projection = {
-                PlantEntry._ID,
-                PlantEntry.COLUMN_PLANT_NAME,
-                PlantEntry.COLUMN_PLANT_PRICE,
-                PlantEntry.COLUMN_PLANT_QUANTITY };
 
-        // Perform a query on the provider using the ContentResolver.
-        // Use the {@link PlantEntry#CONTENT_URI} to access the plant data.
-        return new CursorLoader(this,    // Parent activity context
-                PlantEntry.CONTENT_URI,   // Parent content URI to query
-                projection,             // The columns to return for each row
-                null,                   // Selection criteria
-                null,                   // Selection criteria
-                null);                  // Default sort order
+        // If the search query is an empty string, gets everything from the db
+        if (TextUtils.isEmpty(mSearchQuery)) {
+            // Setting the selection clause to null will return all the values from the table
+            mSelectionClause = null;
+            mSelectionArgs[0] = "";
+
+        } else {
+            // Constructs a selection clause that matches the word that the user entered.
+            mSelectionClause = PlantEntry.COLUMN_PLANT_NAME + " = ?";
+
+            // Moves the user's input string to the selection arguments.
+            mSelectionArgs[0] = mSearchQuery;
+
+        }
+
+            // Define a projection that specifies the columns from the table we care about
+            String[] projection = {
+                    PlantEntry._ID,
+                    PlantEntry.COLUMN_PLANT_NAME,
+                    PlantEntry.COLUMN_PLANT_PRICE,
+                    PlantEntry.COLUMN_PLANT_QUANTITY};
+
+            // Perform a query on the provider using the ContentResolver.
+            // Use the {@link PlantEntry#CONTENT_URI} to access the plant data.
+            return new CursorLoader(this,    // Parent activity context
+                    PlantEntry.CONTENT_URI,  // Parent content URI to query
+                    projection,              // The columns to return for each row
+                    mSelectionClause,        // Selection criteria
+                    mSelectionArgs,          // Selection criteria
+                    null);                   // Default sort order
     }
     
 
@@ -187,5 +233,33 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
         // Callback called when the data needs to be deleted
         mCursorAdapter.swapCursor(null);
 
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        Toast.makeText(this, "Searching for " + query, Toast.LENGTH_SHORT).show();
+
+        mSearchQuery = searchView.getQuery().toString().trim();
+
+        getLoaderManager().restartLoader(PLANT_LOADER, null, this);
+
+        // After you run your desired action:
+        // clear search bar
+        searchView.setQuery("", false);
+
+        // collapse the search box back to the menu icon
+        searchView.setIconified(true);
+
+        // clear the focus of the SearchView and
+        View current = getCurrentFocus();
+        if (current != null)
+            current.clearFocus();
+
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        return false;
     }
 }

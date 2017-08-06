@@ -184,7 +184,7 @@ public class CatalogActivity extends AppCompatActivity
         String mSelectionArgs;
 
         // If the search query is not an empty string, query the db with the given mSearchQuery
-        if (mSearchQuery != null && TextUtils.isEmpty(mSearchQuery)) {
+        if (mSearchQuery != null && !TextUtils.isEmpty(mSearchQuery)) {
             mSelectionArgs = PlantEntry.COLUMN_PLANT_NAME + " LIKE '%" + mSearchQuery + "%'";
             Log.e(LOG_TAG, mSelectionArgs);
         } else {

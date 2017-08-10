@@ -44,17 +44,32 @@ public class CatalogActivity extends AppCompatActivity
      */
     String mSearchQuery = null;
 
-
     /**
      * Tag for the log messages
      */
     public static final String LOG_TAG = CatalogActivity.class.getSimpleName();
 
-    /** Identifier for the plant data loader */
+    /**
+     * Identifier for the plant data loader
+     */
     private static final int PLANT_LOADER = 0;
 
-    /** Adapter for the ListView */
+    /**
+     * Adapter for the ListView
+     */
     PlantCursorAdapter mCursorAdapter;
+
+    /**
+     * Root ListView
+     */
+    ListView mPlantListView;
+
+    /**
+     * EmptyViews for the ListView
+     */
+    View mEmptyView;
+    View mEmptySearchView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,19 +87,21 @@ public class CatalogActivity extends AppCompatActivity
         });
 
         // Find the ListView which will be populated with the plant data
-        ListView plantListView = (ListView) findViewById(R.id.list);
+        mPlantListView = (ListView) findViewById(R.id.list);
 
-        // Find and set empty view on the ListView, so that it only shows when the list has 0 items.
-        View emptyView = findViewById(R.id.empty_view);
-        plantListView.setEmptyView(emptyView);
+        // Find two empty views on the ListView, so that they only show programmatically or when
+        // the list has 0 items or when, after a search, there are no results to display in the list.
+        mEmptyView = findViewById(R.id.empty_view);
+        mEmptySearchView = findViewById(R.id.empty_search_view);
 
-        // Setup an Adapter to create a list tem for each row of the plant data in the Cursor.
+
+        // Setup an Adapter to create a list item for each row of the plant data in the Cursor.
         // There is no plant data yet (until the loader finishes) so pass in null for the Cursor;
         mCursorAdapter = new PlantCursorAdapter(this, null);
-        plantListView.setAdapter(mCursorAdapter);
+        mPlantListView.setAdapter(mCursorAdapter);
 
         // Setup the item click listener to open DetailActivity
-        plantListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        mPlantListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
 
@@ -186,35 +203,41 @@ public class CatalogActivity extends AppCompatActivity
         // If the search query is not an empty string, query the db with the given mSearchQuery
         if (mSearchQuery != null && !TextUtils.isEmpty(mSearchQuery)) {
             mSelectionArgs = PlantEntry.COLUMN_PLANT_NAME + " LIKE '%" + mSearchQuery + "%'";
+            // Set empty view on the ListView, so that it only shows when there are no results
+            // for the search to show in the list.
+            mEmptyView.setVisibility(View.GONE);
+            mPlantListView.setEmptyView(mEmptySearchView);
             Log.e(LOG_TAG, mSelectionArgs);
         } else {
             // If the search query is an empty string, gets everything from the db
             mSelectionArgs = null;
+            // Set empty view on the ListView, so that it only shows when the list has 0 items
+            mEmptySearchView.setVisibility(View.GONE);
+            mPlantListView.setEmptyView(mEmptyView);
         }
 
-            // Define a projection that specifies the columns from the table we care about
-            String[] projection = {
-                    PlantEntry._ID,
-                    PlantEntry.COLUMN_PLANT_NAME,
-                    PlantEntry.COLUMN_PLANT_PRICE,
-                    PlantEntry.COLUMN_PLANT_QUANTITY};
+        // Define a projection that specifies the columns from the table we care about
+        String[] projection = {
+                PlantEntry._ID,
+                PlantEntry.COLUMN_PLANT_NAME,
+                PlantEntry.COLUMN_PLANT_PRICE,
+                PlantEntry.COLUMN_PLANT_QUANTITY};
 
-            // Perform a query on the provider using the ContentResolver.
-            // Use the {@link PlantEntry#CONTENT_URI} to access the plant data.
-            return new CursorLoader(this,    // Parent activity context
-                    PlantEntry.CONTENT_URI,  // Parent content URI to query
-                    projection,              // The columns to return for each row
-                    mSelectionArgs,          // Either null, or the search query the user entered
-                    null,                    // Selection criteria
-                    null);                   // Default sort order
+        // Perform a query on the provider using the ContentResolver.
+        // Use the {@link PlantEntry#CONTENT_URI} to access the plant data.
+        return new CursorLoader(this,    // Parent activity context
+                PlantEntry.CONTENT_URI,  // Parent content URI to query
+                projection,              // The columns to return for each row
+                mSelectionArgs,          // Either null, or the search query the user entered
+                null,                    // Selection criteria
+                null);                   // Default sort order
     }
-    
+
 
     @Override
-    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+    public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
         // Update {@link PlantCursorAdapter} with this new cursor containing updated plant data
-        mCursorAdapter.swapCursor(data);
-
+        mCursorAdapter.swapCursor(cursor);
     }
 
     @Override

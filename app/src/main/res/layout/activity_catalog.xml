@@ -37,6 +37,35 @@
             style="@style/catalog_text_view_empty_shop_second_string" />
     </RelativeLayout>
 
+    <!-- Empty view when there are no results to show in the list -->
+    <RelativeLayout
+        android:id="@+id/empty_search_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+
+        <ImageView
+            android:id="@+id/empty_search_image"
+            android:src="@drawable/ic_empty_search"
+            style="@style/catalog_image_view_empty_shop"
+            android:tint="@color/colorPrimary"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/empty_search_title_text"
+            android:text="@string/empty_search_view_title_text"
+            tools:targetApi="jelly_bean"
+            android:layout_below="@+id/empty_search_image"
+            style="@style/catalog_text_view_empty_shop_first_string" />
+
+        <TextView
+            android:id="@+id/empty_search_subtitle_text"
+            android:layout_below="@+id/empty_search_title_text"
+            android:text="@string/empty_search_view_subtitle_text"
+            tools:targetApi="jelly_bean"
+            style="@style/catalog_text_view_empty_shop_second_string" />
+    </RelativeLayout>
+
     <!-- FAB Button to add plants to the db -->
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"

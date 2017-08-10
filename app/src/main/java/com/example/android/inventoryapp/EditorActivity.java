@@ -284,7 +284,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     /**
      * Get user input from editor and save/update plant into database.
      */
-    private void savePlant() {
+    private boolean savePlant() {
         // Read all data from input fields and use trim to eliminate leading
         // or trailing white space. For priceString automatically replace "," char for
         // decimal with "." to handle correctly the double value.
@@ -308,7 +308,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
 
         if (mCurrentPlantUri == null && mImageUri == null) {
                 Toast.makeText(this, R.string.editor_error_empty_image_field, Toast.LENGTH_SHORT).show();
-                return;
+                return false;
             }
 
         // Check if there are blank fields and alert the user to fill all
@@ -317,7 +317,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
                 TextUtils.isEmpty(quantityString) || TextUtils.isEmpty(supplierNameString) ||
                 TextUtils.isEmpty(supplierPhoneString) || TextUtils.isEmpty(supplierEmailString)) {
             Toast.makeText(this, R.string.editor_error_fields_incomplete, Toast.LENGTH_SHORT).show();
-            return;
+            return false;
         }
 
         // Redundant check for invalid characters into quantity field (on some mobile
@@ -325,7 +325,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         // when trying to save plant data
         if(!(quantityString.matches("[0-9]+"))) {
             Toast.makeText(this, R.string.editor_error_quantity_field, Toast.LENGTH_SHORT).show();
-            return;
+            return false;
         }
 
         // Redundant check for invalid characters into price field (on some mobile
@@ -333,7 +333,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         // when trying to save plant data
         if(!(priceString.matches("^[0-9.,]+$"))) {
             Toast.makeText(this, R.string.editor_error_price_field, Toast.LENGTH_SHORT).show();
-            return;
+            return false;
         }
 
 
@@ -345,7 +345,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
                 TextUtils.isEmpty(supplierPhoneString) && TextUtils.isEmpty(supplierEmailString)) {
             // Since no fields were modified, we can return early without creating a new plant.
             // No need to create ContentValues and no need to do any ContentProvider operations.
-            return;
+            return false;
         }
 
         // Create a ContentValues object where column names are the keys,
@@ -371,10 +371,12 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
                 // If the new content URI is null, then there was an error with insertion.
                 Toast.makeText(this, getString(R.string.editor_insert_plant_failed),
                         Toast.LENGTH_SHORT).show();
+                return false;
             } else {
                 // Otherwise, the insertion was successful and we can display a toast.
                 Toast.makeText(this, getString(R.string.editor_insert_plant_successful),
                         Toast.LENGTH_SHORT).show();
+                return true;
             }
         } else {
             // Otherwise this is an EXISTING plant, so update the plant with content URI: mCurrentPlantUri
@@ -388,10 +390,12 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
                 // If no rows were affected, then there was an error with the update.
                 Toast.makeText(this, getString(R.string.editor_update_plant_failed),
                         Toast.LENGTH_SHORT).show();
+                return false;
             } else {
                 // Otherwise, the update was successful and we can display a toast.
                 Toast.makeText(this, getString(R.string.editor_update_plant_successful),
                         Toast.LENGTH_SHORT).show();
+                return true;
             }
         }
     }
@@ -426,9 +430,10 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             // Respond to a click on the "Save" menu option
             case R.id.action_save:
                 // Save plant to database
-                savePlant();
-                // Exit activity
-                finish();
+                if (savePlant()) {
+                    // Exit activity
+                    finish();
+                };
                 return true;
             // Respond to a click on the "Delete" menu option
             case R.id.action_delete:
@@ -642,15 +647,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
                 deletePlant();
             }
         });
-        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                // User clicked the "Cancel" button, so dismiss the dialog
-                // and continue editing the plant.
-                if (dialog != null) {
-                    dialog.dismiss();
-                }
-            }
-        });
+        builder.setNegativeButton(R.string.cancel, null);
 
         // Create and show the AlertDialog
         AlertDialog alertDialog = builder.create();

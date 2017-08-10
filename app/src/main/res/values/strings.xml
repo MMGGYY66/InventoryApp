@@ -139,4 +139,6 @@
         service. Please feel free to contact me for further clarifications on this purchase order.\n\nYours Sincerely,\n\nFlower Shop Staff</string>
     <string name="label_intent_order_by_email">Send order by email</string>
     <string name="search_view_title">Search</string>
+    <string name="empty_search_view_title_text">No results for your search!</string>
+    <string name="empty_search_view_subtitle_text">Please change keyword for \nyour search and try again.</string>
 </resources>
